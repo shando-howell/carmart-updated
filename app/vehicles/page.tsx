@@ -7,6 +7,7 @@ import { getUserWatchList } from "../data/watching";
 import { cookies } from "next/headers";
 import { auth } from "@/firebase/server";
 import { DecodedIdToken } from "firebase-admin/auth";
+import Link from "next/link";
 
 const VehiclesPage = async () => {
   const { data } = await getListings();
@@ -50,7 +51,9 @@ const VehiclesPage = async () => {
                 />
               </CardContent>
               <CardFooter>
-                <Button className="mt-2.5">See Details</Button>
+                <Link href={`/listing/${listing.id}`}>
+                  <Button className="mt-2.5">See Details</Button>
+                </Link>
               </CardFooter>
             </div>
           </Card>
