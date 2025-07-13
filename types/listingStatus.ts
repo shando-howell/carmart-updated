@@ -1,0 +1,1 @@
+export type ListingStatus = "for-sale" | "draft" | "withdrawn" | "sold";
