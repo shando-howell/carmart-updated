@@ -20,6 +20,7 @@ export default function RootLayout({
         <AuthProvider>
           <Navbar />
           {children}
+          <p className="text-yellow-400 p-2">Developed by Shando-Paul Howell</p>
         </AuthProvider>
         <Toaster />
       </body>
