@@ -10,6 +10,5 @@ export type Listing = {
     price: number;
     description: string;
     condition: ListingCondition;
-    image: string;
     status: ListingStatus;
 }

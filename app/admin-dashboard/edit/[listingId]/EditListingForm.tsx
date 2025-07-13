@@ -21,7 +21,6 @@ const EditListingForm = ({
     price, 
     description,
     condition,
-    image,
     status
 }: Props) => {
     const router = useRouter();
@@ -53,7 +52,6 @@ const EditListingForm = ({
                     price, 
                     description,
                     condition,
-                    image,
                     status,
                 }}
             />

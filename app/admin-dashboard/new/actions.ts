@@ -11,17 +11,16 @@ export const createListing = async (data: {
     price: number;
     description: string;
     condition: "new" | "pre-owned";
-    image: string;
     status: "draft" | "for-sale" | "withdrawn" | "sold",
 }, authToken: string) => {
     const verifiedToken = await auth.verifyIdToken(authToken);
 
-    // if (!verifiedToken.admin) {
-    //     return {
-    //         error: true,
-    //         message: "Unauthorized"
-    //     }
-    // }
+    if (!verifiedToken.admin) {
+        return {
+            error: true,
+            message: "Unauthorized"
+        }
+    }
 
     const validation = listingDataSchema.safeParse(data);
     if (!validation.success) {

@@ -8,7 +8,6 @@ export const listingDataSchema = z.object({
     price: z.coerce.number().positive("Price must be greater than zero"),
     description: z.string().min(40, "Description must contain at least 40 characters."),
     condition: z.enum(["new", "pre-owned"]),
-    image: z.string(),
     status: z.enum(["draft", "for-sale", "withdrawn", "sold"]),
 });
 

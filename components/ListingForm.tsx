@@ -4,18 +4,17 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { listingSchema } from "@/validation/listingSchema";
+import { listingDataSchema } from "@/validation/listingSchema";
 import { Form, FormField, FormItem, FormControl, FormMessage, FormLabel } from "./ui/form";
 import { Select, SelectItem, SelectTrigger, SelectValue, SelectContent } from "./ui/select";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
-import MultiImageUploader, { ImageUpload } from "./MultiImageUploader";
 
 type Props = {
-    handleSubmit: (data: z.infer<typeof listingSchema>) => void;
+    handleSubmit: (data: z.infer<typeof listingDataSchema>) => void;
     submitButtonLabel: React.ReactNode;
-    defaultValues?: z.infer<typeof listingSchema>
+    defaultValues?: z.infer<typeof listingDataSchema>
 }
 
 const ListingForm = ({ 
@@ -23,7 +22,7 @@ const ListingForm = ({
     submitButtonLabel,
     defaultValues 
 }: Props) => {
-    const combinedDefaultValues: z.infer<typeof listingSchema> = {
+    const combinedDefaultValues: z.infer<typeof listingDataSchema> = {
         ...{
             make: "",
             model: "",
@@ -32,15 +31,13 @@ const ListingForm = ({
             price: 0,
             description: "",
             condition: "new",
-            image: "",
             status: "draft",
-            images: []
         },
         ...defaultValues,
     }
 
-    const form = useForm<z.infer<typeof listingSchema>>({
-        resolver: zodResolver(listingSchema),
+    const form = useForm<z.infer<typeof listingDataSchema>>({
+        resolver: zodResolver(listingDataSchema),
         defaultValues: combinedDefaultValues,
     });
 
@@ -177,18 +174,6 @@ const ListingForm = ({
                             </FormItem>
                         )} />
 
-                        <FormField control={form.control} name="image" render={({field}) => (
-                            <FormItem>
-                                <FormLabel>
-                                    Image URL
-                                </FormLabel>
-                                <FormControl>
-                                    <Input {...field} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )} />
-
                         <FormField control={form.control} name="description" render={({field}) => (
                             <FormItem>
                                 <FormLabel>
@@ -203,7 +188,7 @@ const ListingForm = ({
                     </fieldset>
                 </div>
 
-                <FormField control={form.control} name="images" render={({field}) => (
+                {/* <FormField control={form.control} name="images" render={({field}) => (
                     <FormItem>
                         <FormControl>
                         <MultiImageUploader 
@@ -215,7 +200,7 @@ const ListingForm = ({
                         </FormControl>
                         <FormMessage />
                     </FormItem>
-                )} />
+                )} /> */}
                 
                 <Button 
                     type="submit" 
