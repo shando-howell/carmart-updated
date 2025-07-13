@@ -33,7 +33,6 @@ export default async function EditListing({ params }: {
                         price={listing.price} 
                         description={listing.description}
                         condition={listing.condition}
-                        image={listing.image}
                         status={listing.status}
                     />
                 </CardContent>
