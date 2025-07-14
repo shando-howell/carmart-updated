@@ -10,10 +10,15 @@ const GoogleButton = () => {
 
   return (
     <Button onClick={async () => {
-      await auth?.loginWithGoogle();
-      router.push("/")
+      try {
+        await auth?.loginWithGoogle();
+        router.push("/vehicles")
+      } catch (e) {
+
+      }
     }}
     className="w-full text-black"
+    variant="outline"
     >
         Continue with Google
     </Button>

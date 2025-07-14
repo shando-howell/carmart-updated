@@ -2,6 +2,7 @@
 
 import { auth } from "@/firebase/server";
 import { registerUserSchema } from "@/validation/registerUser";
+import { toast } from "sonner";
 
 export const registerUser = async (data: {
     email: string;
@@ -18,7 +19,6 @@ export const registerUser = async (data: {
         }
     }
 
-    // TO FIX: Latency error
     try {
         await auth.createUser({
             displayName: data.name,
@@ -26,8 +26,6 @@ export const registerUser = async (data: {
             password: data.password
         });
     } catch (e: any) {
-        console.log(e)
-
         return {
             error: true,
             message: e.message ?? "Could not register user",

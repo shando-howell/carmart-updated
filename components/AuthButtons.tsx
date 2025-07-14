@@ -71,6 +71,7 @@ const AuthButtons = () => {
             {!auth?.currentUser && 
                 <div className="flex gap-2 items-center uppercase">
                     <Link href="/login">Login</Link>
+                    <Link href="/register">Register</Link>
                 </div>
             }
         </div>

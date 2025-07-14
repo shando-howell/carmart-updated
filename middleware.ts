@@ -3,8 +3,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { decodeJwt } from "jose";
 
 export async function middleware(request: NextRequest) {
+    // Log routes
     console.log("MIDDLEWARE: ", request.url);
 
+    // Cater for POST request method
     if (request.method === "POST") {
         return NextResponse.next();
     }
@@ -34,7 +36,6 @@ export async function middleware(request: NextRequest) {
     }
 
     const decodedToken = decodeJwt(token);
-
     if (decodedToken.exp && (decodedToken.exp - 300) * 1000 < Date.now()) {
         return NextResponse.redirect(
             new URL(
@@ -63,8 +64,6 @@ export const config = {
         "/admin-dashboard/:path*", 
         "/login",
         "/register",
-        // "/account",
-        // "/account/:path*",
-        // "/vehicles"
+        "/vehicles"
     ]
 }

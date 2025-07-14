@@ -1,5 +1,7 @@
-import GoogleButton from "@/components/GoogleButton"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+
+import LoginForm from "./LoginForm";
+import Link from "next/link";
 
 const LoginPage = () => {
   return (
@@ -11,8 +13,12 @@ const LoginPage = () => {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <GoogleButton />
+          <LoginForm />
         </CardContent>
+        <CardFooter>
+          Don&apos;t have an account?
+          <Link href="/register" className="underline pl-1">Register here.</Link>
+        </CardFooter>
       </Card>
     </div>
   )
