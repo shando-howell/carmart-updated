@@ -3,6 +3,7 @@
 import { auth, firestore } from "@/firebase/server";
 import { Listing } from "@/types/listing";
 import { listingDataSchema } from "@/validation/listingSchema";
+import { revalidatePath } from "next/cache";
 
 export const deleteListing = async (listingId: string, authToken: string) => {
     const verifiedToken = await auth.verifyIdToken(authToken);
@@ -41,4 +42,6 @@ export const updateListing = async (data: Listing, authToken: string) => {
         ...listingData,
         updated: new Date()
     });
+
+    revalidatePath(`/listing/${id}`);
 }

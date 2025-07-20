@@ -19,13 +19,16 @@ export async function middleware(request: NextRequest) {
     if (!token && (
         pathname.startsWith("/login") || 
         pathname.startsWith("/register")) ||
-        pathname.startsWith("/vehicles")
+        pathname.startsWith("/vehicles") ||
+        pathname.startsWith("forgot-password")
     ) {
         return NextResponse.next();
     }
 
     if (token && (
-        pathname.startsWith("/login") || pathname.startsWith("/register")
+        pathname.startsWith("/login") || 
+        pathname.startsWith("/register") ||
+        pathname.startsWith("/forgot-password")
         )
     ) {
         return NextResponse.redirect(new URL("/", request.url))
@@ -64,6 +67,9 @@ export const config = {
         "/admin-dashboard/:path*", 
         "/login",
         "/register",
-        "/vehicles"
+        "/vehicles",
+        "/forgot-password",
+        "/account",
+        "/account/:path*",
     ]
 }

@@ -13,7 +13,6 @@ const VehiclesPage = async () => {
   const { data } = await getListings();
 
   const userWatchList = await getUserWatchList();
-  console.log({userWatchList});
 
   const cookieStore = await cookies();
   const token = cookieStore.get("firebaseAuthToken")?.value;

@@ -53,11 +53,19 @@ const AuthButtons = () => {
                             </DropdownMenuItem>
                         )}
                         {!auth.customClaims?.admin && (
-                            <DropdownMenuItem asChild>
-                                <Link href="/account/watch-list">
-                                    Watch List
-                                </Link>
-                            </DropdownMenuItem>
+                            <>
+                                <DropdownMenuItem asChild>
+                                    <Link href="/account">
+                                        My Account
+                                    </Link>
+                                </DropdownMenuItem>
+
+                                <DropdownMenuItem asChild>
+                                    <Link href="/account/watch-list">
+                                        Watch List
+                                    </Link>
+                                </DropdownMenuItem>
+                            </>
                         )}
                         <DropdownMenuItem onClick={async () => {
                             await auth.logout();

@@ -7,6 +7,8 @@ import numeral from "numeral";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import BackButton from "./BackButton";
 
+export const dynamic = "force-static";
+
 const ListingPage = async ({params}: {
   params: Promise<any>
 }) => {
