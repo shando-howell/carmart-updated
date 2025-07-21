@@ -8,6 +8,7 @@ type GetListingsOptions = {
     filters?: {
         minPrice?: number | null;
         maxPrice?: number | null;
+        year?: number | null;
         status?: ListingStatus[] | null;
     },
     pagination?: {
@@ -20,7 +21,7 @@ type GetListingsOptions = {
 export const getListings = async (options?: GetListingsOptions) => {
     const page = options?.pagination?.page || 1;
     const pageSize = options?.pagination?.pageSize || 8;
-    const { minPrice, maxPrice, status } = options?.filters || {};
+    const { minPrice, maxPrice, year, status } = options?.filters || {};
 
     let listingsQuery = firestore.collection("listings").orderBy("updated", "desc");
 
@@ -30,6 +31,10 @@ export const getListings = async (options?: GetListingsOptions) => {
 
     if (maxPrice !== null && maxPrice !== undefined) {
         listingsQuery = listingsQuery.where("price", "<=", maxPrice);
+    }
+
+    if (year !== null && year !== undefined) {
+        listingsQuery = listingsQuery.where("year", "==", year);
     }
 
     if (status) {
