@@ -56,9 +56,6 @@ const VehiclesPage = async ({
   return (
     <div className="max-w-screen-lg mx-auto">
       <Card className="mb-6">
-        <CardHeader>
-          <CardTitle>Filters</CardTitle>
-        </CardHeader>
         <CardContent>
           <Suspense>
             <FiltersForm />
@@ -81,7 +78,7 @@ const VehiclesPage = async ({
                   <CardHeader>
                     <CardTitle className="mb-1">{listing.make} {listing.model}</CardTitle>
                   </CardHeader>
-                <CardContent>
+                <CardContent className="pb-0">
                   <Image 
                     className="object-cover"
                     src="/assets/images/classified-placeholder.jpeg" 
@@ -94,9 +91,11 @@ const VehiclesPage = async ({
                   <div className="flex">
                     <div className="flex gap-4">
                       <div className="flex">
-                        <Link href={`/listing/${listing.id}`}>
-                          <Button className="mt-2.5">See Details</Button>
-                        </Link>
+                        <Button asChild className="mt-2.5">
+                          <Link href={`/listing/${listing.id}`}>
+                            See Details
+                          </Link>
+                        </Button>
                       </div>
                       <div className="flex">
                         <p className="text-1xl mt-3">
@@ -112,6 +111,38 @@ const VehiclesPage = async ({
               </div>
             </Card>
         ))}
+      </div>
+      <div className="flex gap-2 items-center justify-center py-6">
+        {Array.from({length: totalPages}).map((_, i) => {
+          const newSearchParams = new URLSearchParams();
+
+          if (searchParamsValue?.minPrice) {
+            newSearchParams.set("minPrice", searchParamsValue.minPrice);
+          }
+
+          if (searchParamsValue?.maxPrice) {
+            newSearchParams.set("maxPrice", searchParamsValue.maxPrice);
+          }
+
+          if (searchParamsValue?.year) {
+            newSearchParams.set("year", searchParamsValue.year);
+          }
+
+          newSearchParams.set("page", `${i + 1}`);
+
+          return (
+            <Button 
+              asChild={page !== i + 1} 
+              disabled={page === i + 1} 
+              variant="outline"
+              key={i}
+            >
+              <Link href={`/vehicles?${newSearchParams.toString()}`}>
+                {i + 1}
+              </Link>
+            </Button>
+          )
+        })}
       </div>
     </div>
   )

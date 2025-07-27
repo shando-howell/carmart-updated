@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -53,6 +53,9 @@ const FiltersForm = () => {
                 <form onSubmit={form.handleSubmit(handleSubmit)} className="grid grid-cols-4 gap-2">
                     <FormField control={form.control} name="minPrice" render={({field}) => (
                         <FormItem>
+                            <FormLabel>
+                                Min Price
+                            </FormLabel>
                             <FormControl>
                                 <Input {...field} placeholder="Min Price" type="number" min={0}/>
                             </FormControl>
@@ -61,6 +64,9 @@ const FiltersForm = () => {
 
                     <FormField control={form.control} name="maxPrice" render={({field}) => (
                         <FormItem>
+                            <FormLabel>
+                                Max Price
+                            </FormLabel>
                             <FormControl>
                                 <Input {...field} placeholder="Max Price" type="number" min={0}/>
                             </FormControl>
@@ -69,13 +75,16 @@ const FiltersForm = () => {
 
                     <FormField control={form.control} name="year" render={({field}) => (
                         <FormItem>
+                            <FormLabel>
+                                Year
+                            </FormLabel>
                             <FormControl>
                                 <Input {...field} placeholder="Year" type="number" min={0}/>
                             </FormControl>
                         </FormItem>
                     )} />
 
-                    <Button type="submit">
+                    <Button type="submit" className="mt-auto">
                         Search
                     </Button>
                 </form>
